@@ -1,17 +1,27 @@
 # CLI Veri İşleme Egzersizi Notları (Ödev 1.2)
 
-Bu belgede, sadece terminal araçları (Python kullanılmadan) kullanılarak büyük bir CSV veri seti üzerinde gerçekleştirilen veri işleme adımları ve komutları yer almaktadır.
+Bu belgede, sadece terminal araçları (Python kullanılmadan) kullanılarak `diamonds.csv` veri seti üzerinde gerçekleştirilen veri işleme adımları ve komutları yer almaktadır.
 
-## 1. Satır Sayısını Bulma
-CSV dosyasındaki toplam satır sayısını (`wc` aracı ile) bulmak için kullanılan komut:
-```bash
-wc -l veri_seti.csv
+## 1. Satır sayısını bulmak
+**Kullandığım komut:**
+`wc -l data/diamonds.csv`
 
-Belirli bir kolondaki verilerin kaçar kez geçtiğini (frekansını) büyükten küçüğe sıralamak için kullanılan komut (cut, sort ve uniq kombinasyonu):
-cut -d',' -f3 veri_seti.csv | sort | uniq -c | sort -nr
+**Bulduğum sonuç:** Toplam 53941 satır.
 
-Belirli bir kritere (örneğin belirli bir kelimeyi içeren) uyan satırları filtreleyip yeni bir dosyaya aktarmak için kullanılan komut (awk veya grep):
-awk -F',' '$1 == "aranan_deger"' veri_seti.csv > filtrelenmis_veri.csv
+## 2. 3. kolonun tekil değerlerini frekansa göre sıralamak
+**Kullandığım komut:**
+`cut -d ',' -f 3 data/diamonds.csv | sort | uniq -c | sort -nr`
 
-İki farklı CSV dosyasını ortak bir sütun (anahtar) üzerinden birleştirmek için kullanılan komut:
-join -t',' -1 1 -2 1 dosya1.csv dosya2.csv > birlestirilmis_veri.csv
+**Bulduğum sonuç:** En çok tekrar eden değer 11292 frekans ile "G" oldu.
+
+## 3. Belirli bir koşula uyan satırları filtreleyip yeni dosyaya yazmak
+**Kullandığım komut:**
+`awk -F',' '$1 == "Premium"' data/diamonds.csv > data/premium.csv`
+
+**Bulduğum sonuç:** İçerisinde "Premium" geçen verileri süzüp bağımsız bir dosyaya aktardım.
+
+## 4. İki farklı dosyayı birleştirmek
+**Kullandığım komut:**
+`join -t',' -1 1 -2 1 data/diamonds.csv data/premium.csv > data/birlestirilmis_veri.csv`
+
+**Bulduğum sonuç:** `join` komutu kullanılarak ortak anahtar sütun üzerinden iki dosya başarıyla birleştirildi.
