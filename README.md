@@ -1,4 +1,4 @@
-# CLI Veri İşleme Egzersizi (Ödev 1.2)
+# CLI Veri İşleme Egzersizi - Ödev 1.2
 
 Bu depo, Yazılım Mühendisliği staj süreçlerim kapsamında terminal araçlarını kullanarak veri işleme yetkinliklerimi geliştirmek amacıyla oluşturulmuştur.
 
